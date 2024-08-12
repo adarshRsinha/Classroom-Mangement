@@ -1,0 +1,7 @@
+.scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+a.isActive.active {
+    @apply bg-yellow-500 text-white
+}
