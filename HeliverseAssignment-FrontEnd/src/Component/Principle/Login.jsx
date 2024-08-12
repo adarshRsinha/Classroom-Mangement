@@ -36,7 +36,7 @@ const Login = () => {
     console.log(PrincipleData.Email);
     console.log(PrincipleData.Password);
 
-    const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
+    const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
     try {
       const response = await axios.post(`${backendUrl}FullStack/LoginPrinciple`, {
