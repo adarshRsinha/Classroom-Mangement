@@ -5,6 +5,14 @@ const RegisterPrinciple = async (req, res) => {
   try {
     const { Name, Email, Password } = req.body;
 
+    // Debug: Check if Name, Email, and Password are being passed correctly
+    if (!Name || !Email || !Password) {
+      return res.status(400).json({
+        message: "Name, Email, and Password are required",
+        error: true,
+      });
+    }
+
     const existingPrincipal = await Principle.findOne({ Email });
 
     if (existingPrincipal) {
@@ -15,7 +23,22 @@ const RegisterPrinciple = async (req, res) => {
     }
 
     const Slat = await bcryptjs.genSalt(10);
+    // Debug: Check if Slat was generated correctly
+    if (!Slat) {
+      return res.status(500).json({
+        message: "Error generating salt",
+        error: true,
+      });
+    }
+
     const HashPassword = await bcryptjs.hash(Password, Slat);
+    // Debug: Check if HashPassword was created correctly
+    if (!HashPassword) {
+      return res.status(500).json({
+        message: "Error hashing password",
+        error: true,
+      });
+    }
 
     const Payload = {
       Name: Name,
@@ -27,7 +50,7 @@ const RegisterPrinciple = async (req, res) => {
     const Save = await PrincipleSave.save();
 
     return res.status(201).json({
-      message: "Principle Created Succesfully",
+      message: "Principal Created Successfully",
       data: Save,
       success: true,
     });
