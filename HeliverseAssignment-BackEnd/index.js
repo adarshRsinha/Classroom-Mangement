@@ -14,6 +14,7 @@ app.use(cookieparser());
 
 // CORS configuration
 //process.env.FRONTEND_URL
+//https://classroom-mangement.vercel.app
 app.use(
   cors({
     origin: 'https://classroom-mangement.vercel.app',

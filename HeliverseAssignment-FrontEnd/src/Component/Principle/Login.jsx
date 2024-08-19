@@ -39,7 +39,7 @@ const Login = () => {
     const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
     try {
-      const response = await axios.post(`${backendUrl}FullStack/LoginPrinciple`, {
+      const response = await axios.post(`${backendUrl}/FullStack/LoginPrinciple`, {
         Email: PrincipleData?.Email,
         Password: PrincipleData.Password,
       }, {
@@ -47,7 +47,7 @@ const Login = () => {
       });
 
       if (response?.data?.success) {
-        // toast.success(response?.data?.message);
+        toast.success(response?.data?.message);
         localStorage.setItem("PrincipleToken", response.data.token);
         nav('/PrincipleDashBoard', {
           state : response.data.token
